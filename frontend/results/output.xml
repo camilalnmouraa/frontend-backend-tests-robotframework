@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.6 on win32)" generated="2025-03-31T15:51:16.348056" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Projetos\frontend-backend-tests-robotframework\frontend\tests">
+<suite id="s1-s1" name="Search And Purchase Notebook" source="C:\Projetos\frontend-backend-tests-robotframework\frontend\tests\search_and_purchase_notebook.robot">
+<kw name="Abrir Navegador" owner="keywords" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-31T15:51:17.372140" level="INFO">Opening browser 'chrome' to base url 'https://www.kabum.com.br'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-31T15:51:17.371149" elapsed="12.548038"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-03-31T15:51:29.919187" elapsed="0.312017"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.3s</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-03-31T15:51:30.232202" elapsed="0.001002"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<msg time="2025-03-31T15:51:36.073198" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-31T15:51:36.073198" level="FAIL">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</msg>
+<arg>${SEARCH_INPUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="FAIL" start="2025-03-31T15:51:30.233204" elapsed="5.846205">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+</kw>
+<status status="FAIL" start="2025-03-31T15:51:17.369146" elapsed="18.710263">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+</kw>
+<test id="s1-s1-t1" name="Compra de Notebook com Garantia e Validação de Frete" line="10">
+<tag>compra</tag>
+<tag>kabum</tag>
+<tag>notebook</tag>
+<status status="FAIL" start="2025-03-31T15:51:36.079409" elapsed="0.001991">Parent suite setup failed:
+Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+</test>
+<kw name="Fechar Navegador" owner="keywords" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-03-31T15:51:36.083392" elapsed="2.514755"/>
+</kw>
+<status status="PASS" start="2025-03-31T15:51:36.083392" elapsed="2.515277"/>
+</kw>
+<doc>Teste de compra de notebook no Kabum com garantia e validação de frete</doc>
+<status status="FAIL" start="2025-03-31T15:51:16.403010" elapsed="22.195659">Suite setup failed:
+Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+</suite>
+<status status="FAIL" start="2025-03-31T15:51:16.350054" elapsed="22.251221"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">compra</stat>
+<stat pass="0" fail="1" skip="0">kabum</stat>
+<stat pass="0" fail="1" skip="0">notebook</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="0" fail="1" skip="0">Tests</stat>
+<stat name="Search And Purchase Notebook" id="s1-s1" pass="0" fail="1" skip="0">Tests.Search And Purchase Notebook</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

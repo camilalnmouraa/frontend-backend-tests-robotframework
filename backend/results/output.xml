@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.6 on win32)" generated="2025-04-03T18:33:14.481092" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Projetos\frontend-backend-tests-robotframework\backend\tests">
+<suite id="s1-s1" name="Test Invalid Cep" source="C:\Projetos\frontend-backend-tests-robotframework\backend\tests\test_invalid_cep.robot">
+<kw name="Start Session" owner="viacep_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:14.778983" level="INFO">Creating Session using : alias=viacep, url=https://viacep.com.br/ws, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>viacep</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=${False}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-04-03T18:33:14.778983" elapsed="0.001005"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:14.778983" elapsed="0.001005"/>
+</kw>
+<test id="s1-s1-t1" name="Should Return Error For Nonexistent CEP" line="6">
+<kw name="Get CEP Response" owner="viacep_keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T18:33:14.780463" level="INFO">URL usada: https://viacep.com.br/ws/99999999/json/</msg>
+<arg>URL usada: ${BASE_URL}/${cep}/json/</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T18:33:14.780463" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:15.167136" level="INFO">GET Request : url=https://viacep.com.br/ws/99999999/json/ 
+ path_url=/ws/99999999/json/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-04-03T18:33:15.167136" level="INFO">GET Response : url=https://viacep.com.br/ws/99999999/json/ 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 03 Apr 2025 21:33:15 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Allow-Headers': 'Content-Type, X-Request-With, X-Requested-By', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Max-Age': '86400', 'Strict-Transport-Security': 'max-age=63072000'} 
+ body={
+  "erro": "true"
+} 
+ </msg>
+<msg time="2025-04-03T18:33:15.167136" level="INFO">C:\Projetos\frontend-backend-tests-robotframework\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'viacep.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-04-03T18:33:15.167136" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>viacep</arg>
+<arg>/${cep}/json/</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-04-03T18:33:14.780463" elapsed="0.386673"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-04-03T18:33:15.167136" elapsed="0.000000"/>
+</return>
+<msg time="2025-04-03T18:33:15.167136" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>99999999</arg>
+<status status="PASS" start="2025-04-03T18:33:14.780463" elapsed="0.387669"/>
+</kw>
+<kw name="Response Should Be Error" owner="viacep_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.168132" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.168132" elapsed="0.001001"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.169133" level="INFO">${json} = {'erro': 'true'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.169133" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>erro</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.169133" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json['erro']}</arg>
+<arg>true</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.169133" elapsed="0.000998"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2025-04-03T18:33:15.168132" elapsed="0.001999"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:14.779988" elapsed="0.390143"/>
+</test>
+<status status="PASS" start="2025-04-03T18:33:14.504101" elapsed="0.666030"/>
+</suite>
+<suite id="s1-s2" name="Test Invalid Format" source="C:\Projetos\frontend-backend-tests-robotframework\backend\tests\test_invalid_format.robot">
+<kw name="Start Session" owner="viacep_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:15.174006" level="INFO">Creating Session using : alias=viacep, url=https://viacep.com.br/ws, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>viacep</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=${False}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-04-03T18:33:15.174006" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:15.174006" elapsed="0.000000"/>
+</kw>
+<test id="s1-s2-t1" name="Should Fail With Less Than 8 Digits" line="6">
+<kw name="Get CEP Response" owner="viacep_keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.175043" level="INFO">URL usada: https://viacep.com.br/ws/1234567/json/</msg>
+<arg>URL usada: ${BASE_URL}/${cep}/json/</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.175043" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:15.561993" level="INFO">GET Request : url=https://viacep.com.br/ws/1234567/json/ 
+ path_url=/ws/1234567/json/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-04-03T18:33:15.561993" level="INFO">GET Response : url=https://viacep.com.br/ws/1234567/json/ 
+ status=400, reason=Bad Request 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 03 Apr 2025 21:33:16 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '494', 'Connection': 'close', 'ETag': '"6242f812-1ee"', 'Strict-Transport-Security': 'max-age=63072000'} 
+ body=&lt;!DOCTYPE HTML&gt;
+&lt;html lang="pt-br"&gt;
+
+&lt;head&gt;
+  &lt;title&gt;ViaCEP 400&lt;/title&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;style type="text/css"&gt;
+      h1 {
+          color: #555;
+          text-align: center;
+          font-size: 4em;
+      }
+      h2, h3 {
+          color: #666;
+          text-align: center;
+          font-size: 3em;
+      }
+      h3 {
+          font-size: 1.5em;
+      }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Http 400&lt;/h1&gt;
+    &lt;h3&gt;Verifique a URL&lt;/h3&gt;
+    &lt;h3&gt;{Bad Request}&lt;/h3&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-04-03T18:33:15.561993" level="INFO">C:\Projetos\frontend-backend-tests-robotframework\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'viacep.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-04-03T18:33:15.561993" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>viacep</arg>
+<arg>/${cep}/json/</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.175043" elapsed="0.386950"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-04-03T18:33:15.561993" elapsed="0.000000"/>
+</return>
+<msg time="2025-04-03T18:33:15.562991" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>1234567</arg>
+<status status="PASS" start="2025-04-03T18:33:15.175043" elapsed="0.387948"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.562991" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.562991" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:15.174006" elapsed="0.388985"/>
+</test>
+<test id="s1-s2-t2" name="Should Fail With More Than 8 Digits" line="10">
+<kw name="Get CEP Response" owner="viacep_keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.564991" level="INFO">URL usada: https://viacep.com.br/ws/123456789/json/</msg>
+<arg>URL usada: ${BASE_URL}/${cep}/json/</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.564991" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:15.951763" level="INFO">GET Request : url=https://viacep.com.br/ws/123456789/json/ 
+ path_url=/ws/123456789/json/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-04-03T18:33:15.952762" level="INFO">GET Response : url=https://viacep.com.br/ws/123456789/json/ 
+ status=400, reason=Bad Request 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 03 Apr 2025 21:33:16 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '494', 'Connection': 'close', 'ETag': '"6242f812-1ee"', 'Strict-Transport-Security': 'max-age=63072000'} 
+ body=&lt;!DOCTYPE HTML&gt;
+&lt;html lang="pt-br"&gt;
+
+&lt;head&gt;
+  &lt;title&gt;ViaCEP 400&lt;/title&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;style type="text/css"&gt;
+      h1 {
+          color: #555;
+          text-align: center;
+          font-size: 4em;
+      }
+      h2, h3 {
+          color: #666;
+          text-align: center;
+          font-size: 3em;
+      }
+      h3 {
+          font-size: 1.5em;
+      }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Http 400&lt;/h1&gt;
+    &lt;h3&gt;Verifique a URL&lt;/h3&gt;
+    &lt;h3&gt;{Bad Request}&lt;/h3&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-04-03T18:33:15.952762" level="INFO">C:\Projetos\frontend-backend-tests-robotframework\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'viacep.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-04-03T18:33:15.952762" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>viacep</arg>
+<arg>/${cep}/json/</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.564991" elapsed="0.387771"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-04-03T18:33:15.953760" elapsed="0.000000"/>
+</return>
+<msg time="2025-04-03T18:33:15.953760" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>123456789</arg>
+<status status="PASS" start="2025-04-03T18:33:15.563994" elapsed="0.389766"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.954754" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.953760" elapsed="0.000994"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:15.563994" elapsed="0.391763"/>
+</test>
+<status status="PASS" start="2025-04-03T18:33:15.171130" elapsed="0.786436"/>
+</suite>
+<suite id="s1-s3" name="Test Special Characters" source="C:\Projetos\frontend-backend-tests-robotframework\backend\tests\test_special_characters.robot">
+<kw name="Start Session" owner="viacep_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:15.962384" level="INFO">Creating Session using : alias=viacep, url=https://viacep.com.br/ws, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>viacep</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=${False}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-04-03T18:33:15.961427" elapsed="0.000957"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:15.961427" elapsed="0.000957"/>
+</kw>
+<test id="s1-s3-t1" name="Should Fail With Special Characters In CEP" line="6">
+<kw name="Get CEP Response" owner="viacep_keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T18:33:15.962889" level="INFO">URL usada: https://viacep.com.br/ws/01-001@00/json/</msg>
+<arg>URL usada: ${BASE_URL}/${cep}/json/</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.962889" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:16.331817" level="INFO">GET Request : url=https://viacep.com.br/ws/01-001@00/json/ 
+ path_url=/ws/01-001@00/json/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-04-03T18:33:16.331817" level="INFO">GET Response : url=https://viacep.com.br/ws/01-001@00/json/ 
+ status=400, reason=Bad Request 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 03 Apr 2025 21:33:16 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '494', 'Connection': 'close', 'ETag': '"6242f812-1ee"', 'Strict-Transport-Security': 'max-age=63072000'} 
+ body=&lt;!DOCTYPE HTML&gt;
+&lt;html lang="pt-br"&gt;
+
+&lt;head&gt;
+  &lt;title&gt;ViaCEP 400&lt;/title&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;style type="text/css"&gt;
+      h1 {
+          color: #555;
+          text-align: center;
+          font-size: 4em;
+      }
+      h2, h3 {
+          color: #666;
+          text-align: center;
+          font-size: 3em;
+      }
+      h3 {
+          font-size: 1.5em;
+      }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Http 400&lt;/h1&gt;
+    &lt;h3&gt;Verifique a URL&lt;/h3&gt;
+    &lt;h3&gt;{Bad Request}&lt;/h3&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-04-03T18:33:16.331817" level="INFO">C:\Projetos\frontend-backend-tests-robotframework\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'viacep.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-04-03T18:33:16.332915" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>viacep</arg>
+<arg>/${cep}/json/</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-04-03T18:33:15.962889" elapsed="0.370026"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-04-03T18:33:16.332915" elapsed="0.000906"/>
+</return>
+<msg time="2025-04-03T18:33:16.333821" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>01-001@00</arg>
+<status status="PASS" start="2025-04-03T18:33:15.962889" elapsed="0.370932"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-04-03T18:33:16.334813" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.333821" elapsed="0.000992"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:15.962384" elapsed="0.373444"/>
+</test>
+<status status="PASS" start="2025-04-03T18:33:15.958084" elapsed="0.378759"/>
+</suite>
+<suite id="s1-s4" name="Test Valid Cep" source="C:\Projetos\frontend-backend-tests-robotframework\backend\tests\test_valid_cep.robot">
+<kw name="Start Session" owner="viacep_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:16.343171" level="INFO">Creating Session using : alias=viacep, url=https://viacep.com.br/ws, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>viacep</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=${False}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-04-03T18:33:16.343171" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:16.343171" elapsed="0.000000"/>
+</kw>
+<test id="s1-s4-t1" name="Should Return Address For Valid CEP" line="6">
+<kw name="Get CEP Response" owner="viacep_keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T18:33:16.344177" level="INFO">URL usada: https://viacep.com.br/ws/01001000/json/</msg>
+<arg>URL usada: ${BASE_URL}/${cep}/json/</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.344177" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-04-03T18:33:16.710505" level="INFO">GET Request : url=https://viacep.com.br/ws/01001000/json/ 
+ path_url=/ws/01001000/json/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-04-03T18:33:16.711505" level="INFO">GET Response : url=https://viacep.com.br/ws/01001000/json/ 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 03 Apr 2025 21:33:17 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Expires': 'Thu, 03 Apr 2025 22:33:17 GMT', 'Cache-Control': 'max-age=3600, public', 'Pragma': 'public', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Allow-Headers': 'Content-Type, X-Request-With, X-Requested-By', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Max-Age': '86400'} 
+ body={
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao": "Sudeste",
+  "ibge": "3550308",
+  "gia": "1004",
+  "ddd": "11",
+  "siafi": "7107"
+} 
+ </msg>
+<msg time="2025-04-03T18:33:16.711505" level="INFO">C:\Projetos\frontend-backend-tests-robotframework\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'viacep.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-04-03T18:33:16.711808" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>viacep</arg>
+<arg>/${cep}/json/</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.344177" elapsed="0.367631"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-04-03T18:33:16.711808" elapsed="0.000000"/>
+</return>
+<msg time="2025-04-03T18:33:16.711808" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>01001000</arg>
+<status status="PASS" start="2025-04-03T18:33:16.344177" elapsed="0.367631"/>
+</kw>
+<kw name="Response Should Contain Valid Address" owner="viacep_keywords">
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-04-03T18:33:16.713824" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.713824" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-04-03T18:33:16.714821" level="INFO">${json} = {'cep': '01001-000', 'logradouro': 'Praça da Sé', 'complemento': 'lado ímpar', 'unidade': '', 'bairro': 'Sé', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge':...</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.714821" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>cep</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.714821" elapsed="0.001002"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>logradouro</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.715823" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>bairro</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.715823" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>localidade</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.715823" elapsed="0.000996"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>uf</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-04-03T18:33:16.716819" elapsed="0.000000"/>
+</kw>
+<arg>${response}</arg>
+<status status="PASS" start="2025-04-03T18:33:16.712828" elapsed="0.003991"/>
+</kw>
+<status status="PASS" start="2025-04-03T18:33:16.343171" elapsed="0.374346"/>
+</test>
+<status status="PASS" start="2025-04-03T18:33:16.337683" elapsed="0.380718"/>
+</suite>
+<status status="PASS" start="2025-04-03T18:33:14.482119" elapsed="2.238290"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="5" fail="0" skip="0">Tests</stat>
+<stat name="Test Invalid Cep" id="s1-s1" pass="1" fail="0" skip="0">Tests.Test Invalid Cep</stat>
+<stat name="Test Invalid Format" id="s1-s2" pass="2" fail="0" skip="0">Tests.Test Invalid Format</stat>
+<stat name="Test Special Characters" id="s1-s3" pass="1" fail="0" skip="0">Tests.Test Special Characters</stat>
+<stat name="Test Valid Cep" id="s1-s4" pass="1" fail="0" skip="0">Tests.Test Valid Cep</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

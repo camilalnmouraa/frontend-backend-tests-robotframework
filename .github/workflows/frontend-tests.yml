@@ -32,6 +32,6 @@ jobs:
           rm -rf frontend/results/*
           echo "🚀 Running frontend tests..."
           cd frontend  # Garantir que estamos dentro do diretório 'frontend'
-          robot --outputdir frontend/results frontend/tests  # Ajustando o caminho para os testes
+          robot --outputdir results tests  # Ajustando o caminho para os testes
           echo "✅ Frontend test execution completed."
           echo "📁 Reports available at: frontend/results"

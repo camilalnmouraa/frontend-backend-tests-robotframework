@@ -1,0 +1,17 @@
+# VS Code
+.vscode/
+
+# Python cache e temporários
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# Arquivos de execução temporários
+*.db
+*.sqlite
+.DS_Store
+
+# Arquivos de ambiente virtual (não versionar)
+.env
+.venv/

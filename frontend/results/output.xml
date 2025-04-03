@@ -1,67 +1,368 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.6 on win32)" generated="2025-03-31T15:51:16.348056" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.12.6 on win32)" generated="2025-04-03T10:47:57.230280" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="C:\Projetos\frontend-backend-tests-robotframework\frontend\tests">
-<suite id="s1-s1" name="Search And Purchase Notebook" source="C:\Projetos\frontend-backend-tests-robotframework\frontend\tests\search_and_purchase_notebook.robot">
-<kw name="Abrir Navegador" owner="keywords" type="SETUP">
+<suite id="s1-s1" name="Compra Com Garantia" source="C:\Projetos\frontend-backend-tests-robotframework\frontend\tests\Compra_Com_Garantia.robot">
+<kw name="Abrir Site Kabum" owner="keywords" type="SETUP">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-03-31T15:51:17.372140" level="INFO">Opening browser 'chrome' to base url 'https://www.kabum.com.br'.</msg>
+<msg time="2025-04-03T10:47:58.046311" level="INFO">Opening browser 'chrome' to base url 'https://www.kabum.com.br'.</msg>
+<msg time="2025-04-03T10:47:58.496674" level="WARN">The chromedriver version (134.0.6998.165) detected in PATH at C:\Projetos\chromedriver.exe might not be compatible with the detected chrome version (135.0.7049.41); currently, chromedriver 135.0.7049.42 is recommended for chrome 135.*, so it is advised to delete the driver in PATH and retry</msg>
 <arg>${URL}</arg>
-<arg>chrome</arg>
+<arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-03-31T15:51:17.371149" elapsed="12.548038"/>
+<status status="PASS" start="2025-04-03T10:47:58.046311" elapsed="11.093748"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-03-31T15:51:29.919187" elapsed="0.312017"/>
+<status status="PASS" start="2025-04-03T10:48:09.141058" elapsed="0.203606"/>
 </kw>
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>0.3s</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-03-31T15:51:30.232202" elapsed="0.001002"/>
+<status status="PASS" start="2025-04-03T10:48:09.344664" elapsed="0.002438"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<msg time="2025-03-31T15:51:36.073198" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-03-31T15:51:36.073198" level="FAIL">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</msg>
 <arg>${SEARCH_INPUT}</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="FAIL" start="2025-03-31T15:51:30.233204" elapsed="5.846205">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+<status status="PASS" start="2025-04-03T10:48:09.347102" elapsed="0.462307"/>
 </kw>
-<status status="FAIL" start="2025-03-31T15:51:17.369146" elapsed="18.710263">Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:09.811225" level="INFO">Clicking element 'id=onetrust-accept-btn-handler'.</msg>
+<arg>${COOKIES}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:09.810589" elapsed="1.243874"/>
 </kw>
-<test id="s1-s1-t1" name="Compra de Notebook com Garantia e Validação de Frete" line="10">
+<arg>Click Element</arg>
+<arg>${COOKIES}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2025-04-03T10:48:09.810021" elapsed="1.245035"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Site Kabum aberto com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:11.055602" elapsed="0.000590"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:11.057425" level="INFO">Navegador aberto na URL https://www.kabum.com.br</msg>
+<arg>Navegador aberto na URL ${URL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:11.056841" elapsed="0.000584"/>
+</kw>
+<doc>Abre o navegador na URL configurada e aceita os cookies, se o popup estiver visível.</doc>
+<status status="PASS" start="2025-04-03T10:47:58.043894" elapsed="13.014111"/>
+</kw>
+<test id="s1-s1-t1" name="TC01 - Fluxo de Compra com Garantia Estendida" line="10">
+<kw name="Buscar e Selecionar Produto" owner="keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:11.062171" level="INFO">Typing text 'Notebook' into text field 'id=input-busca'.</msg>
+<arg>${SEARCH_INPUT}</arg>
+<arg>${produto}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:11.062171" elapsed="1.476124"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${SUGESTAO_PRODUTO}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:12.538295" elapsed="1.698067"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:14.236362" level="INFO">Clicking element 'css=.DropdownSearchbar a.sc-dd558cc4-8:first-of-type'.</msg>
+<arg>${SUGESTAO_PRODUTO}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:14.236362" elapsed="6.868472"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${BOTAO_COMPRAR}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-04-03T10:48:21.104834" elapsed="0.368430"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔎 Produto "${produto}" selecionado com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:21.473574" elapsed="0.001054"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:21.475627" level="INFO">Busca concluída para: Notebook</msg>
+<arg>Busca concluída para: ${produto}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:21.474628" elapsed="0.000999"/>
+</kw>
+<arg>${SEARCH_TERM}</arg>
+<doc>Realiza a busca por um produto e clica na sugestão visível da pesquisa.</doc>
+<status status="PASS" start="2025-04-03T10:48:11.060149" elapsed="10.415478"/>
+</kw>
+<kw name="Inserir CEP E Validar Modal de Frete" owner="keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:21.478150" level="INFO">Typing text '52071335' into text field 'id=inputCalcularFrete'.</msg>
+<arg>${FRETE_INPUT}</arg>
+<arg>${cep}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:21.478150" elapsed="1.236055"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:22.715580" level="INFO">Clicking element 'id=botaoCalcularFrete'.</msg>
+<arg>${CALCULAR_FRETE_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:22.714802" elapsed="1.033027"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${MODAL_FRETE}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:23.747829" elapsed="0.655698"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:25.055372" level="INFO">Element 'xpath=//span[text()[contains(., "Entrega Econômica")]]' is displayed.</msg>
+<arg>${FRETE_ECONOMICA}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:24.403527" elapsed="0.651845"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:25.707836" level="INFO">Element 'xpath=//span[text()[contains(., "Entrega Expressa")]]' is displayed.</msg>
+<arg>${FRETE_EXPRESSA}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:25.055973" elapsed="0.651863"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>📦 Modal de frete validado com sucesso para o CEP: ${cep}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:25.707836" elapsed="0.001563"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:25.710426" level="INFO">Frete validado com sucesso para o CEP 52071335</msg>
+<arg>Frete validado com sucesso para o CEP ${cep}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:25.709399" elapsed="0.001027"/>
+</kw>
+<arg>${CEP_VALIDO}</arg>
+<doc>Insere o CEP informado e valida se as opções de frete estão visíveis no modal.</doc>
+<status status="PASS" start="2025-04-03T10:48:21.476634" elapsed="4.233792"/>
+</kw>
+<kw name="Fechar Modal de Frete" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOTAO_FECHAR_MODAL}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:25.712966" elapsed="0.720644"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${BOTAO_FECHAR_MODAL}</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-04-03T10:48:26.434531" elapsed="0.986473"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:27.421004" level="INFO">Clicking element 'css=div[role="dialog"] button[aria-label="Fechar"]'.</msg>
+<arg>${BOTAO_FECHAR_MODAL}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:27.421004" elapsed="0.818496"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Modal de frete fechado com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:28.239500" elapsed="0.001590"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:28.241782" level="INFO">Modal de frete fechado</msg>
+<arg>Modal de frete fechado</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:28.241439" elapsed="0.000343"/>
+</kw>
+<doc>Fecha o modal de opções de frete.</doc>
+<status status="PASS" start="2025-04-03T10:48:25.711943" elapsed="2.529839"/>
+</kw>
+<kw name="Adicionar Produto ao Carrinho" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOTAO_COMPRAR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:28.242849" elapsed="0.637177"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${BOTAO_COMPRAR}</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-04-03T10:48:28.880645" elapsed="0.960192"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:29.840837" level="INFO">Clicking element 'xpath=//button[normalize-space(.)="COMPRAR"]'.</msg>
+<arg>${BOTAO_COMPRAR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:29.840837" elapsed="1.153994"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${GARANTIA_CHECKBOX}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-04-03T10:48:30.994831" elapsed="4.478724"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🛒 Produto adicionado ao carrinho com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:35.474080" elapsed="0.000446"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:35.475104" level="INFO">Produto adicionado ao carrinho após clique em "Comprar"</msg>
+<arg>Produto adicionado ao carrinho após clique em "Comprar"</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:35.475104" elapsed="0.000000"/>
+</kw>
+<doc>Clica no botão "Comprar" e aguarda o carregamento da seção de garantia.</doc>
+<status status="PASS" start="2025-04-03T10:48:28.241782" elapsed="7.233322"/>
+</kw>
+<kw name="Selecionar Garantia Estendida" owner="keywords">
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:36.213393" level="INFO">${ja_selecionado} = true</msg>
+<var>${ja_selecionado}</var>
+<arg>${elemento}</arg>
+<arg>checked</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:35.476629" elapsed="0.736764"/>
+</kw>
+<if>
+<branch type="IF" condition="'${ja_selecionado}' != 'true'">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${elemento}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-04-03T10:48:36.215453" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🔧 Garantia "${descricao}" foi selecionada</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2025-04-03T10:48:36.215453" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Garantia estendida "${descricao}" selecionada manualmente</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-04-03T10:48:36.215453" elapsed="0.002050"/>
+</kw>
+<status status="NOT RUN" start="2025-04-03T10:48:36.213393" elapsed="0.005127"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>ℹ️ Garantia "${descricao}" já estava selecionada</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:36.219076" elapsed="0.001231"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:36.221513" level="INFO">Garantia já estava selecionada</msg>
+<arg>Garantia já estava selecionada</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:36.221513" elapsed="0.000596"/>
+</kw>
+<status status="PASS" start="2025-04-03T10:48:36.218520" elapsed="0.003589"/>
+</branch>
+<status status="PASS" start="2025-04-03T10:48:36.213393" elapsed="0.008716"/>
+</if>
+<arg>${GARANTIA_CHECKBOX}</arg>
+<arg>${GARANTIA_LABEL}</arg>
+<doc>Seleciona a garantia estendida, caso ainda não esteja marcada.</doc>
+<status status="PASS" start="2025-04-03T10:48:35.476629" elapsed="0.745480"/>
+</kw>
+<kw name="Acessar Carrinho" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${IR_PARA_CARRINHO_BUTTON}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:36.223846" elapsed="0.658090"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${IR_PARA_CARRINHO_BUTTON}</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-04-03T10:48:36.882539" elapsed="0.972375"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:37.855926" level="INFO">Clicking element 'css=a#linkCarrinhoHeader'.</msg>
+<arg>${IR_PARA_CARRINHO_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-03T10:48:37.854914" elapsed="5.064687"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${PRODUTO_NO_CARRINHO}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-03T10:48:42.919601" elapsed="0.650209"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🧾 Carrinho acessado com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:43.569810" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:43.569810" level="INFO">Carrinho acessado e produto carregado na tela</msg>
+<arg>Carrinho acessado e produto carregado na tela</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:43.569810" elapsed="0.000000"/>
+</kw>
+<doc>Clica para ir ao carrinho e aguarda o produto ser carregado.</doc>
+<status status="PASS" start="2025-04-03T10:48:36.223308" elapsed="7.348537"/>
+</kw>
+<kw name="Validar Produto No Carrinho" owner="keywords">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:44.215318" level="INFO">Element 'css=a.productName' contains text 'Notebook'.</msg>
+<arg>${PRODUTO_NO_CARRINHO}</arg>
+<arg>${SEARCH_TERM}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-04-03T10:48:43.571845" elapsed="0.643473"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-04-03T10:48:44.854913" level="INFO">Element 'xpath=//span[contains(text(), "12 Meses")]' contains text '12 Meses'.</msg>
+<arg>${GARANTIA_NO_CARRINHO}</arg>
+<arg>${GARANTIA_LABEL}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-04-03T10:48:44.215318" elapsed="0.639595"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Produto e garantia validados no carrinho com sucesso</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:44.855763" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:44.856636" level="INFO">Validação final concluída com sucesso</msg>
+<arg>Validação final concluída com sucesso</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:44.855763" elapsed="0.000873"/>
+</kw>
+<doc>Valida se o produto buscado e a garantia estão corretamente exibidos no carrinho.</doc>
+<status status="PASS" start="2025-04-03T10:48:43.571845" elapsed="1.284791"/>
+</kw>
+<doc>Simula a jornada de compra completa no e-commerce Kabum, incluindo busca de produto, cálculo de frete e seleção de garantia estendida.</doc>
 <tag>compra</tag>
-<tag>kabum</tag>
-<tag>notebook</tag>
-<status status="FAIL" start="2025-03-31T15:51:36.079409" elapsed="0.001991">Parent suite setup failed:
-Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+<tag>critica</tag>
+<tag>e2e</tag>
+<status status="PASS" start="2025-04-03T10:48:11.058005" elapsed="33.799142"/>
 </test>
 <kw name="Fechar Navegador" owner="keywords" type="TEARDOWN">
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-03-31T15:51:36.083392" elapsed="2.514755"/>
+<status status="PASS" start="2025-04-03T10:48:44.859431" elapsed="2.618788"/>
 </kw>
-<status status="PASS" start="2025-03-31T15:51:36.083392" elapsed="2.515277"/>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>🚪 Navegador fechado</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-04-03T10:48:47.478219" elapsed="0.000000"/>
 </kw>
-<doc>Teste de compra de notebook no Kabum com garantia e validação de frete</doc>
-<status status="FAIL" start="2025-03-31T15:51:16.403010" elapsed="22.195659">Suite setup failed:
-Element 'xpath=//input[@placeholder="O que você está procurando?"]' did not appear in 5 seconds.</status>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-03T10:48:47.480034" level="INFO">Navegador encerrado com sucesso</msg>
+<arg>Navegador encerrado com sucesso</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-03T10:48:47.478219" elapsed="0.001815"/>
+</kw>
+<doc>Fecha o navegador e captura screenshot se o teste falhar.</doc>
+<status status="PASS" start="2025-04-03T10:48:44.859431" elapsed="2.620603"/>
+</kw>
+<doc>Executa um teste E2E simulando a compra de um notebook com garantia estendida e validação de frete no site Kabum.</doc>
+<status status="PASS" start="2025-04-03T10:47:57.306635" elapsed="50.173399"/>
 </suite>
-<status status="FAIL" start="2025-03-31T15:51:16.350054" elapsed="22.251221"/>
+<status status="PASS" start="2025-04-03T10:47:57.234507" elapsed="50.247099"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">compra</stat>
-<stat pass="0" fail="1" skip="0">kabum</stat>
-<stat pass="0" fail="1" skip="0">notebook</stat>
+<stat pass="1" fail="0" skip="0">compra</stat>
+<stat pass="1" fail="0" skip="0">critica</stat>
+<stat pass="1" fail="0" skip="0">e2e</stat>
 </tag>
 <suite>
-<stat name="Tests" id="s1" pass="0" fail="1" skip="0">Tests</stat>
-<stat name="Search And Purchase Notebook" id="s1-s1" pass="0" fail="1" skip="0">Tests.Search And Purchase Notebook</stat>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Compra Com Garantia" id="s1-s1" pass="1" fail="0" skip="0">Tests.Compra Com Garantia</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-04-03T10:47:58.496674" level="WARN">The chromedriver version (134.0.6998.165) detected in PATH at C:\Projetos\chromedriver.exe might not be compatible with the detected chrome version (135.0.7049.41); currently, chromedriver 135.0.7049.42 is recommended for chrome 135.*, so it is advised to delete the driver in PATH and retry</msg>
 </errors>
 </robot>

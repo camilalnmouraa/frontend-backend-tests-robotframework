@@ -20,18 +20,15 @@ jobs:
           python-version: '3.10'
 
       - name: 📦 Install dependencies for frontend
+        working-directory: frontend
         run: |
-          echo "📂 Changing to frontend directory"
-            cd frontend
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: ⚙️ Run Robot Framework tests (Frontend)
-        run: |
-          echo "🧹 Cleaning previous results..."
-          rm -rf frontend/results/*
+        working-directory: frontend
+        run: |   
           echo "🚀 Running frontend tests..."
-          cd frontend  # Garantir que estamos dentro do diretório 'frontend'
-          robot --outputdir results tests  # Ajustando o caminho para os testes
+          robot --outputdir results tests
+          
           echo "✅ Frontend test execution completed."
-          echo "📁 Reports available at: frontend/results"

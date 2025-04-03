@@ -1,18 +1,27 @@
-name: Frontend Tests
+name: Run Robot Framework Tests
 
 on:
-    push:
-    pull_request:
-        paths:
-            - 'frontend/**'
+  push:
+  pull_request:
+    paths:
+      - 'frontend/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 17 * * *'
 
 jobs:
-  run-robot-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
+        with:
+          path: frontend-backend-tests-robotframework
+
+      - name: 🛠️ Set the working directory to the correct path
+        run: |
+          cd /home/runner/work/frontend-backend-tests-robotframework
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4

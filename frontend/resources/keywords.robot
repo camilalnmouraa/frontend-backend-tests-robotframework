@@ -6,15 +6,10 @@ Resource   ../config/variables.robot
 *** Keywords ***
 
 Abrir Site Kabum
-    [Documentation]    Abre o navegador na URL configurada e aceita os cookies, se o popup estiver visível.
+    [Documentation]    Abre o site da Kabum usando o navegador padrão (Chrome headless no CI).
     Open Browser    ${URL}    ${BROWSER}
-    ...    options=add_argument("--headless")
-    ...    options=add_argument("--disable-gpu")
-    ...    options=add_argument("--no-sandbox")
-    ...    options=add_argument("--disable-dev-shm-usage")
-    ...    options=add_argument("--user-data-dir")
-    ...    options=add_argument("--user-data-dir=/tmp/robot-profile")
     Maximize Browser Window
+    Set Selenium Speed    0.3s
     Wait Until Page Contains Element    ${SEARCH_INPUT}
     Run Keyword And Ignore Error    Click Element    ${COOKIES}
     Log To Console    ✅ Site Kabum aberto com sucesso

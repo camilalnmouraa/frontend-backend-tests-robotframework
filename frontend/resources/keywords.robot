@@ -7,7 +7,7 @@ Resource   ../config/variables.robot
 
 Abrir Site Kabum
     [Documentation]    Abre o navegador na URL configurada e aceita os cookies, se o popup estiver visível.
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${URL}    ${BROWSER}    options=${CHROME_OPTIONS}
     Maximize Browser Window
     Set Selenium Speed    0.3s
     Wait Until Page Contains Element    ${SEARCH_INPUT}

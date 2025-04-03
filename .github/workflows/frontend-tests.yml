@@ -25,6 +25,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: 🗂️ Create results directory
+        working-directory: frontend
+        run: mkdir -p results
+
       - name: ⚙️ Run Robot Framework tests (Frontend)
         working-directory: frontend
         run: |          
@@ -37,6 +41,7 @@ jobs:
         run: ls -la frontend/results
   
       - name: 📁 Upload Robot Framework Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: robot-report

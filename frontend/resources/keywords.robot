@@ -7,13 +7,7 @@ Resource   ../config/variables.robot
 
 Abrir Site Kabum
     [Documentation]    Abre o navegador em modo headless.
-    Open Browser    ${URL}    chrome
-    ...    options=add_argument("--headless")
-    ...    options=add_argument("--disable-gpu")
-    ...    options=add_argument("--no-sandbox")
-    ...    options=add_argument("--disable-dev-shm-usage")
-    Maximize Browser Window
-    Set Selenium Speed    0.3s
+    Open Browser    ${URL}    headlesschrome
     Wait Until Page Contains Element    ${SEARCH_INPUT}
     Run Keyword And Ignore Error    Click Element    ${COOKIES}
     Log To Console    ✅ Site Kabum aberto com sucesso

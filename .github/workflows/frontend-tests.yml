@@ -27,7 +27,7 @@ jobs:
 
       - name: ⚙️ Run Robot Framework tests (Frontend)
         working-directory: frontend
-        run: |   
+        run: |          
           echo "🚀 Running frontend tests..."
           robot --outputdir results tests
           

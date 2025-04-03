@@ -35,7 +35,7 @@ jobs:
 
       - name: 📤 Upload Robot Framework artifacts
         if: always()
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v3
         with:
           name: robot-report
           path: frontend/results

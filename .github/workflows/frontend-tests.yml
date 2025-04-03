@@ -30,10 +30,3 @@ jobs:
           sudo apt-get install -y chromium-browser chromium-chromedriver
           export PATH=$PATH:/usr/lib/chromium-browser/
           robot -d frontend/results frontend/tests/
-
-      - name: 📤 Upload reports
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: robot-report
-          path: frontend/results

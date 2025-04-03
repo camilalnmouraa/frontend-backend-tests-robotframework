@@ -32,3 +32,9 @@ jobs:
           robot --outputdir results tests
           
           echo "✅ Frontend test execution completed."
+
+      - name: 📁 Upload Robot Framework Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-report
+          path: frontend/results/

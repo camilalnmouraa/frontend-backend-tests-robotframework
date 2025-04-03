@@ -24,9 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r frontend/requirements.txt
 
-      - name: ⚙️ Run Robot tests (headless Chrome)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-          export PATH=$PATH:/usr/lib/chromium-browser/
-          robot -d frontend/results frontend/tests/
+          - name: ⚙️ Run Robot Framework tests
+          run: |          
+            echo "🚀 Running frontend tests..."
+            robot --outputdir frontend/results frontend/tests
+        
+            echo "✅ Test execution completed."
+            echo "📁 Reports available at: frontend/results"

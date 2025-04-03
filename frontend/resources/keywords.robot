@@ -8,6 +8,7 @@ Resource   ../config/variables.robot
 Abrir Site Kabum
     [Documentation]    Abre o navegador em modo headless.
     Open Browser    ${URL}    headlesschrome
+    Set Window Size    1920    1080
     Wait Until Page Contains Element    ${SEARCH_INPUT}
     Run Keyword And Ignore Error    Click Element    ${COOKIES}
     Log To Console    ✅ Site Kabum aberto com sucesso

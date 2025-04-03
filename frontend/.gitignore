@@ -16,4 +16,5 @@ __pycache__/
 .env
 .venv/
 
-results/
+# Ignora pasta de resultados locais dos testes
+frontend/results/

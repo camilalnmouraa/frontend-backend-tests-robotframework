@@ -18,7 +18,7 @@ ${COOKIES}                    id=onetrust-accept-btn-handler
 # =====================
 # Frete / CEP
 # =====================
-${FRETE_INPUT}                id=inputCalcularFrete
+${FRETE_INPUT}    css=[data-testid="ZipCodeInput"]
 # Campo para digitar o CEP no modal de frete
 
 ${CALCULAR_FRETE_BUTTON}      id=botaoCalcularFrete

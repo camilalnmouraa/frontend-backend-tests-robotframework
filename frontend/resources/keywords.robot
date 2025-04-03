@@ -26,6 +26,8 @@ Buscar e Selecionar Produto
 Inserir CEP E Validar Modal de Frete
     [Documentation]    Insere o CEP informado e valida se as opções de frete estão visíveis no modal.
     [Arguments]    ${cep}
+    Scroll Element Into View    ${CALCULAR_FRETE_BUTTON}
+    Click Element    ${FRETE_INPUT}
     Input Text    ${FRETE_INPUT}    ${cep}
     Click Element    ${CALCULAR_FRETE_BUTTON}
     Wait Until Element Is Visible    ${MODAL_FRETE}

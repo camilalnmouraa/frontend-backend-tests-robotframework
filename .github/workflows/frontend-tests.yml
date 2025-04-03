@@ -29,10 +29,13 @@ jobs:
         working-directory: frontend
         run: |          
           echo "🚀 Running frontend tests..."
-          robot --outputdir results tests
+          robot --output results/output.xml --log results/log.html --report results/report.html tests
           
           echo "✅ Frontend test execution completed."
 
+      - name: 📂 List result files
+        run: ls -la frontend/results
+  
       - name: 📁 Upload Robot Framework Report
         uses: actions/upload-artifact@v4
         with:

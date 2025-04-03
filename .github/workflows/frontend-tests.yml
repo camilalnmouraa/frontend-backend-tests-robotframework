@@ -5,41 +5,32 @@ on:
   pull_request:
     paths:
       - 'frontend/**'
-  workflow_dispatch:
-  schedule:
-    - cron: '0 17 * * *'
 
 jobs:
-  test:
+  frontend-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
-        with:
-          path: frontend-backend-tests-robotframework
-
-      - name: 🛠️ Set the working directory to the correct path
-        run: |
-          cd /home/runner/work/frontend-backend-tests-robotframework
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install dependencies for frontend
+        working-directory: frontend
         run: |
           python -m pip install --upgrade pip
           pip install -r frontend/requirements.txt
 
-      - name: ⚙️ Run Robot Framework tests
+      - name: ⚙️ Run Robot Framework tests (Frontend)
+        working-directory: frontend
         run: |
           echo "🧹 Cleaning previous results..."
           rm -rf frontend/results/*
-  
           echo "🚀 Running frontend tests..."
           robot --outputdir frontend/results frontend/tests
-  
-          echo "✅ Test execution completed."
+          echo "✅ Frontend test execution completed."
           echo "📁 Reports available at: frontend/results"

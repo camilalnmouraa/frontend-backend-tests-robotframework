@@ -27,11 +27,11 @@ jobs:
             pip install -r requirements.txt
 
       - name: ⚙️ Run Robot Framework tests (Frontend)
-        working-directory: frontend
         run: |
           echo "🧹 Cleaning previous results..."
           rm -rf frontend/results/*
           echo "🚀 Running frontend tests..."
-          robot --outputdir frontend/results frontend/tests
+          cd frontend  # Garantir que estamos dentro do diretório 'frontend'
+          robot --outputdir frontend/results frontend/tests  # Ajustando o caminho para os testes
           echo "✅ Frontend test execution completed."
           echo "📁 Reports available at: frontend/results"

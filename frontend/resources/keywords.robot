@@ -17,7 +17,6 @@ Buscar e Selecionar Produto
     [Documentation]    Realiza a busca por um produto e clica na sugestão visível da pesquisa.
     [Arguments]    ${produto}
     Input Text    ${SEARCH_INPUT}    ${produto}
-    Scroll Element Into View    ${SUGESTAO_PRODUTO}
     Wait Until Element Is Visible    ${SUGESTAO_PRODUTO}
     Click Element    ${SUGESTAO_PRODUTO}
     Wait Until Page Contains Element    ${BOTAO_COMPRAR}

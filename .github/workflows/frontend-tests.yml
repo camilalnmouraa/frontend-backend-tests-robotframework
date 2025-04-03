@@ -1,4 +1,4 @@
-name: Run Robot Framework Tests
+name: Run Frontend Robot Framework Tests
 
 on:
   push:

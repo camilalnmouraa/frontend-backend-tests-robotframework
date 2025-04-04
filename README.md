@@ -18,7 +18,7 @@ Os testes são executados automaticamente via **GitHub Actions** a cada novo pus
 
 ### ✅ Testes End-to-End (E2E)
 - Validam o comportamento da aplicação de ponta a ponta.
-- Simula a jornada de compra completa no e-commerce Kabum, incluindo busca de produto, cálculo de frete e seleção de garantia estendida.
+- Simula a jornada de compra no e-commerce Kabum, incluindo busca de produto, cálculo de frete e seleção de garantia estendida.
 
 
 
